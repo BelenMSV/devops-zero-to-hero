@@ -1,6 +1,6 @@
 # 🔄 Ciclo de Vida del Software (SDLC) y Metodologías
 
-Este módulo cubre los fundamentos de cómo se construye el software, desde la concepción de la idea hasta su mantenimiento, y cómo han evolucionado las metodologías de trabajo hasta llegar a la necesidad de DevOps.
+Este tema cubre los fundamentos de cómo se construye el software, desde la concepción de la idea hasta su mantenimiento, y cómo han evolucionado las metodologías de trabajo hasta llegar a la necesidad de DevOps.
 
 ---
 

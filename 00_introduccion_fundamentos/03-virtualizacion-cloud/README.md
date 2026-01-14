@@ -2,6 +2,7 @@
 
 Este tema cubre la infraestructura: el lugar físico o virtual donde se ejecuta nuestro software. Entender la evolución desde los servidores físicos hasta la nube es clave para entender por qué usamos herramientas modernas.
 
+DevOps significa que los desarrolladores entienden la infraestructura y los administradores de sistemas entienden el ciclo de desarrollo
 ---
 
 ## 1. Evolución de la Infraestructura
