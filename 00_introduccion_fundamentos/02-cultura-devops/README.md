@@ -44,6 +44,9 @@ Es lo más importante. Se trata de comunicación, responsabilidad compartida (no
 
 ### 🤖 A - Automation (Automatización)
 Eliminar el trabajo manual repetitivo.
+* **Sin intervención humana:** Al automatizar todo el flujo (Build, Test, Deploy), se eliminan los errores humanos.
+* **Repetible y Seguro:** La automatización no solo ahorra tiempo, sino que garantiza que los procesos sean repetibles (si funciona una vez, funcionará siempre igual).
+* Ejemplos:
 * ¿Desplegar código? Automático.
 * ¿Probar errores? Automático.
 * ¿Crear servidores? Automático (IaC).
