@@ -24,14 +24,30 @@ Mientras que Windows y macOS se diseñaron para que el usuario final haga clic e
 
 Para entender cómo funciona, no necesitas ser mecánico, pero sí distinguir las partes principales:
 
-```mermaid
-graph TD
-    User[👤 Usuario / Aplicaciones] --> Shell[🐚 Shell (Intérprete de Comandos)]
-    Shell --> Kernel[⚙️ Kernel (El Núcleo)]
-    Kernel --> Hardware[🖥️ Hardware (CPU, RAM, Disco)]
-    
-    style Kernel fill:#f9f,stroke:#333,stroke-width:2px
-    style Shell fill:#bbf,stroke:#333,stroke-width:2px
+### Arquitectura Básica
+Para entender Linux, imagina un coche:
+
+```text
++---------------------+
+|   👤   USUARIO      |  <-- Tú y tus Aplicaciones
++----------+----------+
+           |
+           v
++----------+----------+
+|   🐚    SHELL       |  <-- El Intérprete (Volante)
+|  (Bash, Zsh, etc.)  |      Traduce tus órdenes
++----------+----------+
+           |
+           v
++----------+----------+
+|   ⚙️    KERNEL      |  <-- El Núcleo (Motor)
+| (Gestión Recursos)  |      Habla con el hierro
++----------+----------+
+           |
+           v
++----------+----------+
+|   🖥️   HARDWARE     |  <-- CPU, RAM, Disco
++---------------------+
 ```
 
 * **⚙️ Kernel (El Motor):** Es el corazón del sistema. Es el único que habla directamente con el hardware. Gestiona la memoria y la CPU.
