@@ -12,7 +12,7 @@ Sigue estos pasos rigurosamente para configurar tu primer servidor RedHat-based.
 Antes de iniciar, ve a **Configuración (Settings)** de la VM:
 1.  **Storage (Almacenamiento):**
     * En "Controller: IDE", selecciona el CD vacío.
-    * Elige el archivo **`CentOS-Stream-9-xxx-boot.iso`** que descargaste.
+    * Elige el archivo **`boot.iso`** que descargaste.
 2.  **Network (Red):**
     * **Adaptador 1:** Déjalo en **NAT** (por defecto).
     * **Adaptador 2:** Actívalo -> Conectado a: **Adaptador Puente (Bridged Adapter)**.
@@ -32,14 +32,22 @@ Inicia la VM (`Start`). Usa las flechas para seleccionar "Install CentOS Stream 
 4.  **Root Password:** Establece una contraseña segura (ej: `admin123`). Si es débil, pulsa Done dos veces.
 5.  **Begin Installation:** Espera a que termine (10-15 min).
 
-> **Al terminar:** NO pulses Reboot. Apaga la VM desde VirtualBox (Close -> Power off). Ve a Settings -> Storage y **retira la ISO** (Remove disk) para que no vuelva a iniciar la instalación.
+> **Al terminar:** NO pulses Reboot todavía. Apaga la VM desde VirtualBox (Close -> Power off). Ve a Settings -> Storage y **retira la ISO** (Remove disk) para que no vuelva a iniciar la instalación.
 
-## 4. Verificación
-1.  Enciende la VM. Loguéate como `root` con tu contraseña.
-2.  Comando clave: `ip addr show`.
-3.  Busca la IP del segundo adaptador (ej: `192.168.1.X`).
-4.  Desde tu PC real (Git Bash/Terminal), conéctate por SSH:
+## 4. Post-Instalación (Primer Inicio)
+1.  Enciende la VM. Verás un asistente de bienvenida ("Start Setup").
+2.  Omeite (Skip) las cuentas online.
+3.  **Crear Usuario:**
+    * Full Name: `CentOS User`
+    * Username: `centosuser`
+    * Password: (Elige una contraseña y recuérdala).
+4.  ¡Ya estás dentro! Abre la terminal (busca "Terminal" en Activities).
+
+## 5. Verificación SSH
+1.  En la terminal de la VM, escribe: `ip addr show`.
+2.  Busca la IP del segundo adaptador (ej: `192.168.1.X`).
+3.  Desde tu PC real (Git Bash/Terminal), conéctate:
     ```bash
-    ssh root@192.168.1.X
-    # Acepta la huella digital (yes) y pon la contraseña.
+    ssh centosuser@192.168.1.X
+    # Pon "yes" y la contraseña que creaste en el paso 4.
     ```

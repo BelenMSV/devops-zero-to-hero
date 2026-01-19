@@ -1,23 +1,6 @@
-# 🛠️ Estrategia de Creación Manual
-
-Antes de usar Vagrant, vamos a crear nuestras máquinas "a la antigua usanza". Esto nos dará el conocimiento necesario para luego escribir las recetas de automatización.
-
-## 📋 Requisitos del Laboratorio
-Para completar las prácticas de este módulo necesitas:
-1.  Ordenador de 64-bits con virtualización activada en BIOS.
-2.  Herramientas instaladas (ver Módulo 1): VirtualBox (o VMware en Mac M1/M2) y Git Bash/Putty.
-3.  Conexión a internet estable.
-
-## 🐧 Los Sistemas Operativos (ISOs)
-Trabajaremos con dos de las distribuciones Linux más populares del mercado:
-* **CentOS:** La versión comunitaria de Red Hat Enterprise Linux (muy usada en servidores corporativos).
-* **Ubuntu:** La distribución más popular basada en Debian.
-
-> **Próximos pasos:** En las siguientes lecciones descargaremos las imágenes `.iso` de estos sistemas y configuraremos paso a paso el hardware virtual (CPU, RAM, Disco) para instalarlos.
-
 # 🛠️ Creación Manual de Máquinas Virtuales
 
-En esta sección crearemos dos servidores Linux (CentOS y Ubuntu) paso a paso. Esto nos enseñará a configurar hardware virtual, particiones y redes antes de automatizarlo.
+En esta sección crearemos dos servidores Linux (CentOS y Ubuntu) paso a paso. Aunque el objetivo final del curso es automatizar esto con Vagrant, aprender a hacerlo manualmente es vital para entender cómo se configuran el hardware virtual, las particiones y las redes.
 
 ---
 
@@ -54,3 +37,19 @@ Necesitamos los discos de instalación de los sistemas operativos. Descarga esto
 
 ## 🌐 Concepto Clave: Bridged Networking (Adaptador Puente)
 Para que nuestras VMs se comporten como servidores reales en tu casa, usaremos el modo **"Adaptador Puente"**.
+
+```mermaid
+graph TD
+    Router[Router WiFi de Casa] -->|IP: 192.168.1.50| PC[Tu Ordenador Físico]
+    Router -->|IP: 192.168.1.51| VM[Máquina Virtual]
+    
+    subgraph Tu Ordenador
+    PC -.->|Puente| VM
+    end
+```
+1.  **NAT (Adapter 1):** Permite a la VM tener internet (salir fuera).
+2.  **Bridged (Adapter 2):** Conecta la VM directamente a tu Router WiFi a través de la tarjeta de red de tu PC.
+    * Tu Router le asignará una IP real (ej: `192.168.1.51`) distinta a la de tu PC.
+    * Esto permite conectar por SSH desde tu terminal local fácilmente.
+
+👉 **Siguiente paso:** Ve a la guía de [Instalación de CentOS](./guide-centos.md).

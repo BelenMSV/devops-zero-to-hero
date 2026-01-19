@@ -16,7 +16,8 @@ Igual que en CentOS, ve a **Configuración**:
     * Adaptador 2: **Adaptador Puente (Bridged)** conectado a tu WiFi.
 
 ## 3. Proceso de Instalación
-Inicia la VM. El asistente de Ubuntu es basado en texto (usa Flechas, Enter y Espacio).
+Inicia la VM. El asistente de Ubuntu es basado en texto.
+> **Tip:** Usa las **Flechas** para moverte, **Espacio** para marcar [X] y **Enter** para confirmar.
 
 1.  **Idioma:** English.
 2.  **Keyboard:** Done.
