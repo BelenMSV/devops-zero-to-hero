@@ -59,7 +59,7 @@ ls
 # Salida esperada: devopsdir testdir vpdir
 ```
 
-## 📄 Crear archivos vacíos (touch)
+## 📄 Crear archivos vacíos (`touch`)
 A veces necesitamos crear un archivo rápidamente para pruebas sin abrir un editor.
 
 * **Comando**: `touch <nombre_archivo>`
@@ -88,7 +88,7 @@ Es vital entender la diferencia al moverte:
 ## 📋 Copiar Archivos y Carpetas (`cp`)
 Para duplicar contenido usamos `cp` (Copy).
 * **`cp origen destino`**: Copia un archivo.
-* [cite_start]**`cp -r origen destino`**: Copia una carpeta entera (recursivo)[cite: 288, 296].
+* **`cp -r origen destino`**: Copia una carpeta entera (recursivo).
 
 ```bash
 # Copiar un archivo a una carpeta
@@ -99,12 +99,11 @@ cp file2 testdir/
 cp -r testdir/ vpdir/
 ```
 
-## 🚚 Mover y Renombrar (mv)
+## 🚚 Mover y Renombrar (`mv`)
 En Linux, "mover" y "renombrar" son el mismo comando: mv (Move).
 
-* 1. Si mueves de A a B (carpeta), se mueve.
-
-* 2. Si mueves de A a A (con otro nombre), se renombra.
+1. Si mueves de A a B (carpeta), se mueve.
+2. Si mueves de A a A (con otro nombre), se renombra.
 
 ```bash
 # MOVER: Mueve la carpeta 'devopsdir' dentro de 'vpdir'
@@ -114,12 +113,12 @@ mv devopsdir/ vpdir/
 mv file3 file_renamed
 ```
 
-## 🗑️ Borrar contenido (rm)
+## 🗑️ Borrar contenido (`rm`)
 ⚠️ ¡Cuidado! En la terminal no hay "Papelera de Reciclaje". Lo que borras, desaparece para siempre.
 
-* rm archivo: Borra un archivo.
-* rm -r carpeta: Borra una carpeta y su contenido.
-* rm -rf carpeta: Borra carpeta a la fuerza sin preguntar (peligroso).
+* **`rm archivo`**: Borra un archivo.
+* **`rm -r carpeta`**: Borra una carpeta y su contenido.
+* **`rm -rf carpeta`**: Borra carpeta a la fuerza sin preguntar (peligroso).
 
 ```bash
 # Borrar un archivo simple
