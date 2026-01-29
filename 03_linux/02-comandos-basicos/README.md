@@ -42,11 +42,23 @@ El comando `cd` (Change Directory) es tus "piernas" en Linux.
 ```
 
 ## 👁️ Listar contenido (`ls`)
-Para ver qué hay dentro de una carpeta.
+Para ver qué hay dentro de una carpeta. El comando `ls` tiene muchas "banderas" (flags) para modificar su comportamiento.
 
 * **`ls`**: Listado simple.
-* **`ls -l`**: Listado detallado (permisos, dueño, tamaño).
-* **`ls -a`**: Muestra archivos ocultos (los que empiezan por punto .).
+
+### Opciones más comunes
+| Opción | Descripción |
+| :--- | :--- |
+| **`-l`** | **Long listing**. Formato de lista detallada (permisos, dueño, tamaño, fecha). |
+| **`-a`** | **All**. Muestra todos los archivos, incluidos los ocultos (empiezan por `.`). |
+| **`-r`** | **Reverse**. Muestra la lista en orden inverso. |
+| **`-t`** | **Time**. Ordena por fecha de modificación (lo más nuevo primero). |
+| **`-R`** | **Recursive**. Muestra el contenido de la carpeta actual y de todas sus subcarpetas. |
+| **`-i`** | **Inode**. Muestra el número de índice (inode) de cada archivo. |
+
+> **Truco Pro:** Puedes combinar las opciones.
+> * `ls -la`: Muestra lista detallada + archivos ocultos.
+> * `ls -ltr`: Muestra lista detallada + ordenada por tiempo + inversa (útil para ver qué se modificó al final).
 
 ```bash
 # 1. Creamos más carpetas para probar
@@ -57,6 +69,10 @@ mkdir vpdir
 # 2. Listamos para verlas
 ls
 # Salida esperada: devopsdir testdir vpdir
+
+# 3. Listamos para verlas con formato de lista detallada (permisos, dueño, tamaño, fecha)
+ls -l
+# Salida: Muestra permisos, usuario, grupo, tamaño y fecha.
 ```
 
 ## 📄 Crear archivos vacíos (`touch`)
