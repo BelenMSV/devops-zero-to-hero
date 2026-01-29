@@ -43,3 +43,26 @@ ls -l
 # lrwxrwxrwx 1 vagrant vagrant 20 ... mi_acceso_directo -> archivo_original.txt
 ```
 > **⚠️ Nota:** Si borras el archivo original, el enlace se rompe (se queda "huérfano") y dejará de funcionar.
+
+### 🧪 Ejercicio Práctico
+Vamos a crear un acceso directo en nuestra carpeta actual que nos lleve directamente a la carpeta de logs del sistema (`/var/log`), tal como se ve en el laboratorio.
+
+```bash
+# 1. Estamos en nuestra carpeta de prácticas
+pwd
+# /home/vagrant/linux-practices
+
+# 2. Creamos el enlace 'logdir' que apunta a '/var/log/'
+ln -s /var/log/ logdir
+
+# 3. Verificamos con ls -l
+ls -l
+# Salida esperada:
+# lrwxrwxrwx 1 vagrant vagrant ... logdir -> /var/log/
+```
+Fíjate en dos cosas:
+
+1. La línea empieza por `l` (indicando que es un Link).
+2. Al final aparece una flecha `->` indicando a dónde apunta realmente.
+
+Si ahora haces `cd logdir`, ¡mágicamente estarás viendo el contenido de `/var/log`!
