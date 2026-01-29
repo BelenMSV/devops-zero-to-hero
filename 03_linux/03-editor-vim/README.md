@@ -7,12 +7,14 @@ VIM es un editor de texto en terminal. A diferencia del Notepad o Word, no usas 
 
 
 ## 🧠 El Concepto Clave: Los 3 Modos
-VIM funciona con "modos". Si intentas escribir sin estar en el modo correcto, romperás cosas. Entender esto es vital.
+VIM funciona con 3 modos principales. Si intentas escribir sin estar en el modo correcto, romperás cosas.
+
+> **Nota**: Al abrir el editor de VIM, estará en "Command Mode" por defecto.
 
 | Modo | Cómo entrar | Qué hace | Cómo salir |
 | :--- | :--- | :--- | :--- |
-| **Command Mode** | (Por defecto al abrir) | Te mueves, copias, pegas o borras líneas. No puedes escribir texto. | Pulsa `i`, `a`, u `o` para ir a Insert. |
-| **Insert Mode** | Pulsa `i` | **Aquí sí puedes escribir** normal (como en Notepad). | Pulsa `Esc` para volver a Command. |
+| **Command Mode** | (Por defecto al abrir) | Te mueves, copias, pegas o borras líneas. | Pulsa `i`, `a`, u `o` para ir a Insert. |
+| **Insert Mode** | Pulsa `i` | **Aquí sí puedes escribir** normal. | Pulsa `Esc` para volver a Command. |
 | **Extended Mode** | Pulsa `:` (desde Command) | Para guardar (`w`), salir (`q`) o buscar. | Pulsa `Enter` tras el comando. |
 
 ---
@@ -54,11 +56,16 @@ Recuerda pulsar `Esc` antes de escribir los dos puntos `:`.
 
 | Comando | Acción |
 | :--- | :--- |
-| `:w` | Guardar (Write). |
+| `:w` | Guardar cambios (Write). |
 | `:q` | Salir (Quit). |
 | `:wq` | Guardar y Salir. |
-| `:q!` | **Salir SIN guardar** (Forzado). Úsalo si te equivocas. |
-| `:set nu` | Mostrar números de línea (útil para programar). |
+| `:x` | Igual que `:wq` (Guardar y Salir). |
+| `:q!` | **Salir SIN guardar**. Úsalo si te equivocas y quieres descartar cambios. |
+| `:w!` | Forzar guardado (útil en archivos de solo lectura si eres root). |
+| `:wq!` | Forzar guardado y salir. |
+| `:X` | **Poner contraseña** (encriptar) el archivo. |
+| `:se nu` | Mostrar números de línea. |
+| `:se nonu` | Quitar números de línea. |
 
 ---
 
