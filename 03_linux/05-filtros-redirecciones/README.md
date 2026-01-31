@@ -1,8 +1,45 @@
-# 🔍 Filtros y Redirecciones (grep & I/O)
+# 🔍 Filtros, Lectura y Redirecciones
 
-> "En Linux, la información es poder, pero solo si sabes encontrarla."
+> "En Linux, la información es poder, pero solo si sabes encontrarla y leerla."
 
-Hasta ahora hemos aprendido a listar archivos. Ahora aprenderemos a **buscar texto dentro de ellos** y a manipular esa información.
+Hasta ahora hemos aprendido a listar archivos. Ahora aprenderemos a **leer su contenido**, buscar texto dentro de ellos y manipular esa información.
+
+## 📖 Comandos de Lectura (Viewers)
+A veces los archivos son enormes (miles de líneas). No podemos simplemente volcarlos en pantalla. Necesitamos herramientas para "paginar" o ver trozos.
+
+### 1. Paginación: `less` y `more`
+Se usan para ver archivos largos página por página.
+
+* **`less`**: Es el estándar moderno. Muestra el contenido y te deja navegar.
+* **`more`**: Es la versión antigua ("exactly same like less" pero con menos funciones).
+
+**Teclas de navegación en `less`**:
+| Tecla | Acción |
+| :--- | :--- |
+| `Enter` | Bajar línea por línea. |
+| `d` | Bajar página (Down). |
+| `b` | Subir página (Back). |
+| `/` | Buscar una palabra dentro del archivo. |
+| `v` | Entrar en modo edición (`vi`) al vuelo. |
+| `q` | Salir (Quit). |
+
+```bash
+# Ver un archivo largo cómodamente
+less /etc/passwd
+```
+### 2. Vistas Parciales: `head` y `tail`
+A veces solo te interesa el principio o el final.
+
+* **`head`**: Muestra las primeras 10 líneas (la cabeza).
+* **`tail`**: Muestra las últimas 10 líneas (la cola).
+
+```bash
+# Ver el principio del archivo
+head /etc/passwd
+
+# Ver el final del archivo
+tail /etc/passwd
+```
 
 ## 🕵️‍♂️ El buscador: `grep`
 El comando `grep` (*Global Regular Expression Print*) se usa para encontrar texto dentro de cualquier entrada de texto o archivo.
@@ -16,7 +53,9 @@ Para practicar, usaremos un archivo del sistema llamado `/etc/passwd`.
 
 ---
 
-### 🧪 Ejercicio: Buscando usuarios
+## 🧪 Ejercicios de Búsqueda
+
+### A. Búsqueda básica 
 Queremos encontrar si existe el usuario "root" dentro del archivo.
 
 * **Sintaxis:** `grep "texto_a_buscar" archivo`
@@ -29,7 +68,7 @@ grep root /etc/passwd
 # root:x:0:0:root:/root:/bin/bash
 ```
 
-### 🔠 Case Sensitive (Mayúsculas y Minúsculas)
+### B. Case Sensitive (Mayúsculas y Minúsculas)
 Linux es "Case Sensitive" (sensible a mayúsculas). Para Linux, `Root` es totalmente diferente a `root`.
 
 ⚠️ **Cuidado:** Si buscas "Root" (con mayúscula), probablemente no encuentres nada.
@@ -37,12 +76,19 @@ Linux es "Case Sensitive" (sensible a mayúsculas). Para Linux, `Root` es totalm
 # Esto no devolverá nada porque "root" está en minúsculas en el archivo
 grep Root /etc/passwd
 ```
-### **💡 Solución**: La opción `-i` (Ignore Case)
+* **💡 Solución**: La opción `-i` (Ignore Case)
 Si quieres buscar algo sin importar si está escrito en mayúsculas o minúsculas, usa la opción `-i`.
 
 ```bash
 # Ahora sí lo encontrará, ignorando mayúsculas
 grep -i Root /etc/passwd
+```
+### C. Búsqueda Inversa (`-v`)
+¿Y si quieres ver todo **EXCEPTO** una palabra específica? Usa la opción `-v`.
+
+```bash
+# Mostrar todas las líneas que NO contengan "nologin"
+grep -v nologin /etc/passwd
 ```
 ---
 
