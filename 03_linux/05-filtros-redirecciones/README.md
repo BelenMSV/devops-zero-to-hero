@@ -92,6 +92,40 @@ grep -v nologin /etc/passwd
 ```
 ---
 
+## ✂️ Manipulación de Texto (`cut` y `sed`)
+A veces no basta con buscar, necesitamos recortar datos o reemplazar palabras.
+
+### 1. Cortar columnas (`cut`)
+Sirve para extraer columnas específicas de un archivo delimitado (como un CSV o `/etc/passwd`).
+
+* **`-d`**: Delimitador (qué carácter separa las columnas, ej: `:`, `,`, `espacio`).
+* **`-f`**: Field (qué número de columna quieres).
+
+```bash
+# Ejemplo: Extraer solo los nombres de usuario (columna 1) de /etc/passwd
+# El delimitador es ':'
+cut -d ":" -f 1 /etc/passwd
+```
+
+### 2. Buscar y Reemplazar (`sed`)
+`sed` (Stream Editor) permite modificar el texto al vuelo. 
+> ⚠️ **Nota**: Por defecto solo modifica la salida en pantalla, no cambia el archivo original.
+
+* Sintaxis: `sed 's/buscar/reemplazar/g' archivo`
+
+```bash
+# 1. Creamos un archivo de prueba
+echo "Welcome to Kernel Tech" > ktfile
+
+# 2. Reemplazamos "Tech" por "Technologies"
+sed 's/Tech/Technologies/g' ktfile
+
+# Salida: Welcome to Kernel Technologies
+# (Si haces 'cat ktfile', verás que el original sigue igual)
+```
+
+---
+
 ## 🔀 Redirecciones de Entrada/Salida (I/O)
 Normalmente, el resultado de un comando sale por la pantalla (stdout). Podemos redirigir ese resultado para guardarlo en un archivo.
 
