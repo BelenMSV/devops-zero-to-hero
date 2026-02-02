@@ -125,6 +125,18 @@ sed 's/Tech/Technologies/g' ktfile
 ```
 
 ---
+---
+
+## 🔦 Búsqueda de Archivos (`find`)
+A diferencia de `grep` (que mira dentro de los archivos), el comando `find` se usa para buscar la **ubicación de archivos o carpetas** en el sistema.
+
+Es similar al buscador de archivos de Windows.
+
+* **Sintaxis:** `find <ruta_donde_buscar> <opciones>`
+
+```bash
+# Ejemplo de la imagen: Buscar el archivo 'newtools.txt' dentro de la carpeta home
+find /home/vagrant/ -name newtools.txt
 
 ## 🔀 Redirecciones de Entrada/Salida (I/O)
 Normalmente, el resultado de un comando sale por la pantalla (stdout). Podemos redirigir ese resultado para guardarlo en un archivo.
