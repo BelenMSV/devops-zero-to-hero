@@ -1,4 +1,4 @@
-# 🔍 Filtros, Lectura y Redirecciones
+# 🔍 Búsqueda, Filtros y Redirecciones
 
 > "En Linux, la información es poder, pero solo si sabes encontrarla y leerla."
 
@@ -125,8 +125,6 @@ sed 's/Tech/Technologies/g' ktfile
 ```
 
 ---
----
-
 ## 🔦 Búsqueda de Archivos (`find`)
 A diferencia de `grep` (que mira dentro de los archivos), el comando `find` se usa para buscar la **ubicación de archivos o carpetas** en el sistema.
 
@@ -137,7 +135,21 @@ Es similar al buscador de archivos de Windows.
 ```bash
 # Ejemplo de la imagen: Buscar el archivo 'newtools.txt' dentro de la carpeta home
 find /home/vagrant/ -name newtools.txt
+```
+### Opciones comunes
+| Opción | Uso |
+| :--- | :--- |
+| **`-name`** | Buscar por nombre del archivo. |
+| **`-type`** | Buscar por tipo (ej: `f` para ficheros, `d` para directorios). |
+| **`-user`** | Buscar archivos que pertenezcan a un usuario específico. |
+| **`-group`** | Buscar archivos que pertenezcan a un grupo. |
+| **`-inum`** | Buscar por número de inodo (índice interno). |
 
+```bash
+# Ejemplo útil: Buscar todos los archivos del usuario 'vagrant' en /var
+find /var -user vagrant
+```
+---
 ## 🔀 Redirecciones de Entrada/Salida (I/O)
 Normalmente, el resultado de un comando sale por la pantalla (stdout). Podemos redirigir ese resultado para guardarlo en un archivo.
 
@@ -167,12 +179,15 @@ El operador `|` (pipe) es la magia de Linux. Toma la salida del comando de la iz
 **Filosofía**: Unir herramientas pequeñas para hacer tareas complejas.
 
 ```bash
-# Ejemplo: Leer el archivo y pasárselo a grep
-# (El resultado es igual a grep normal, pero ilustra el flujo)
+# Ejemplo 1: Filtrar una lista de archivos (ls + grep)
+ls | grep logdir
+
+# Ejemplo 2: Ver solo los 3 primeros archivos de una carpeta (ls + head)
+ls | head -3
+
+# Ejemplo 3: Leer archivo y buscar (cat + grep)
 cat /etc/passwd | grep root
 
-# Ejemplo Útil: Contar cuántas líneas tienen la palabra "false"
-# 1. grep busca las líneas
-# 2. wc -l las cuenta (Word Count -lines)
+# Ejemplo 4: Contar líneas (grep + wc)
 grep false /etc/passwd | wc -l
 ```
