@@ -54,3 +54,37 @@ Ejemplo: `root:x:0:0:root:/root:/bin/bash`
 Al igual que los usuarios, los grupos tienen su propio archivo de configuración.
 
 Estructura: `Group name : password : GID : group members`
+
+---
+
+## 🔐 El archivo de secretos: `/etc/shadow`
+Mientras que `/etc/passwd` es legible por todos, `/etc/shadow` solo puede leerlo el root porque contiene datos sensibles.
+
+Cada línea tiene 9 campos separados por `:`:
+1.  **Username:** Nombre del usuario.
+2.  **Encrypted Password:** La contraseña cifrada. Si ves `!!` o `*`, el usuario no tiene contraseña o está bloqueado.
+3.  **Last Change:** Días desde que se cambió la contraseña (contando desde 1970).
+4.  **Min Days:** Días mínimos antes de poder cambiar la contraseña.
+5.  **Max Days:** Días máximos antes de que la contraseña caduque (obligatorio cambiarla).
+6.  **Warning:** Días de aviso antes de que caduque.
+7.  **Inactive:** Días para deshabilitar la cuenta tras caducar la contraseña.
+8.  **Expiry:** Fecha absoluta de caducidad de la cuenta.
+9.  **Reserved:** Reservado para uso futuro.
+
+---
+
+## 🛠️ Comandos de Gestión (Práctica)
+
+### 1. Crear usuario y asignar contraseña
+El comando `useradd` crea el usuario, pero la cuenta está desactivada hasta que le pones contraseña.
+
+```bash
+# 1. Crear el usuario 'dino' (como root o con sudo)
+sudo useradd dino
+
+# 2. Asignarle una contraseña (te pedirá escribirla dos veces)
+sudo passwd dino
+
+# 3. Cambiar de usuario para probar (Switch User)
+su - dino
+```
