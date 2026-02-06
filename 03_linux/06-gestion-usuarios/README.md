@@ -88,3 +88,48 @@ sudo passwd dino
 # 3. Cambiar de usuario para probar (Switch User)
 su - dino
 ```
+> **Diferencia clave**:
+> * `useradd`: Comando nativo (más manual, usado en RedHat/CentOS).
+> * `adduser`: Script amigable (te hace preguntas, usado en Ubuntu/Debian).
+
+### 2. Gestión de Grupos
+Podemos crear grupos para organizar usuarios (ej: "devops", "marketing").
+
+```bash
+# Crear un grupo nuevo llamado 'opsadmin'
+sudo groupadd opsadmin
+
+# Añadir el usuario 'dino' al grupo 'opsadmin'
+# -a (append/añadir) -G (Group)
+sudo usermod -aG opsadmin dino
+
+# Verificar los grupos de un usuario
+id dino
+# Salida esperada: uid=1002(dino) gid=1002(dino) groups=1002(dino),1003(opsadmin)
+```
+### 3. Eliminar Usuarios y Grupos
+⚠️ **Cuidado:** Borrar un usuario no borra sus archivos personales a menos que uses la opción `-r`.
+
+```bash
+# Borrar usuario Y su carpeta home (-r = remove home)
+sudo userdel -r dino
+
+# Borrar un grupo
+sudo groupdel opsadmin
+
+## 📄 Cheatsheet de Comandos
+
+| Comando | Descripción |
+| :--- | :--- |
+| `useradd` | Crear usuario (estándar en RedHat/CentOS). |
+| `adduser` | Crear usuario (interactivo, común en Ubuntu). |
+| `id` | Muestra información del usuario (UID, GID, grupos). |
+| `groupadd` | Crea un nuevo grupo. |
+| `usermod -G` | Añade un usuario a un grupo. |
+| `passwd` | Establecer o resetear contraseña. |
+| `userdel -r` | Borra el usuario y su directorio home. |
+| `groupdel` | Borra un grupo. |
+| `last` | Muestra el historial de los últimos inicios de sesión. |
+| `who` | Muestra quién está conectado al sistema actualmente. |
+| `whoami` | Muestra tu nombre de usuario actual. |
+| `lsof -u user` | Lista los archivos abiertos por un usuario específico. |
