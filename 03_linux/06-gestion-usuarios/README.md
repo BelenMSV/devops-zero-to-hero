@@ -118,6 +118,7 @@ sudo userdel -r dino
 sudo groupdel opsadmin
 
 ## 📄 Cheatsheet de Comandos
+```
 
 | Comando | Descripción |
 | :--- | :--- |
