@@ -68,3 +68,18 @@ apt --help
 > **Nota:** El flujo de trabajo típico con APT es:
 > 1. `sudo apt update` (Actualiza la lista de paquetes disponibles).
 > 2. `sudo apt install nombre_paquete` (Instala el programa y sus dependencias).
+
+**Comandos Clave de APT**:
+
+```bash
+# 1. Actualizar la lista de repositorios (Hacer siempre antes de instalar)
+sudo apt update
+
+# 2. Buscar un paquete (Ej: buscar 'apache2')
+# Muy útil si no sabes el nombre exacto del programa
+apt search apache2
+
+# 3. Instalar un programa
+# En Ubuntu, el servidor web se llama 'apache2' (en CentOS era 'httpd')
+sudo apt install apache2 -y
+```
