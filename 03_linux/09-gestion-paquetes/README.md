@@ -24,6 +24,7 @@ Antes de instalar paquetes manuales, a veces necesitamos bajarlos de internet.
 ---
 
 ## 2. Familia RedHat (CentOS / RHEL / Fedora)
+> **Nota sobre la agrupación:** Aunque en la tabla inicial separamos "RedHat" y "Modern RH", ambos pertenecen a la misma familia técnica. Comparten el mismo formato de archivo (`.rpm`) y la misma estructura, pero evolucionaron su herramienta de gestión de `yum` a `dnf`. Por eso los tratamos juntos en esta sección.
 
 ### A. Gestión Manual con `rpm`
 Útil cuando descargas un paquete suelto y no usas repositorios.
@@ -93,9 +94,9 @@ sudo apt reinstall apache2
 # 5. Borrar paquete
 sudo apt remove apache2
 ```
-## 📄 Cheatsheet Resumen
+## 📄 Cheatsheet Resumen: RedHat vs Debian
 
-Comparativa rápida entre los comandos de RedHat (CentOS) y Debian (Ubuntu).
+Comparativa definitiva entre los comandos de RedHat (CentOS/Fedora) y Debian (Ubuntu).
 
 | Acción | RedHat / CentOS (`dnf`/`yum`) | Ubuntu / Debian (`apt`) |
 | :--- | :--- | :--- |
@@ -105,4 +106,7 @@ Comparativa rápida entre los comandos de RedHat (CentOS) y Debian (Ubuntu).
 | **Reinstalar** | `dnf reinstall pkg` | `apt reinstall pkg` |
 | **Borrar** | `dnf remove pkg` | `apt remove pkg` |
 | **Buscar** | `dnf search pkg` | `apt search pkg` |
+| **Ver Info Detallada** | `dnf info pkg` | `apt show pkg` |
+| **Limpiar Basura/Caché** | `dnf clean all` | `apt clean` |
+| **Borrar Huérfanos** | `dnf autoremove` | `apt autoremove` |
 | **Ver Historia** | `dnf history` | (ver `/var/log/apt/history.log`) |
