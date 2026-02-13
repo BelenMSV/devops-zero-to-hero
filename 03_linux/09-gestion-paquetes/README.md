@@ -6,80 +6,103 @@ Existen dos grandes familias en Linux, y cada una tiene sus herramientas.
 
 | Familia | Distros | Formato Archivo | Herramienta Manual | Gestor Inteligente |
 | :--- | :--- | :---: | :---: | :---: |
-| **RedHat** | CentOS, RHEL, Fedora | `.rpm` | `rpm` | **`yum`** (o `dnf`) |
+| **RedHat** | CentOS 7, RHEL 7 | `.rpm` | `rpm` | **`yum`** |
+| **Modern RH** | CentOS 8+, Fedora | `.rpm` | `rpm` | **`dnf`** |
 | **Debian** | Ubuntu, Kali, Mint | `.deb` | `dpkg` | **`apt`** |
 
 ---
 
-## 1. RedHat / CentOS (RPM y YUM)
+## 1. Herramientas de Descarga (Previo a instalar)
+Antes de instalar paquetes manuales, a veces necesitamos bajarlos de internet.
 
-### A. Instalación Manual (`rpm`)
-Podemos descargar un archivo `.rpm` e instalarlo manualmente.
-* Comando: `rpm -ivh paquete.rpm` (Install, Verbose, Hash).
+| Comando | Descripción | Ejemplo |
+| :--- | :--- | :--- |
+| **`wget`** | Descargar archivo desde un link. | `wget http://sitio.com/archivo.rpm` |
+| **`curl -O`** | Descargar y guardar con el mismo nombre. | `curl -O http://sitio.com/archivo.rpm` |
+| **`curl -o`** | Descargar y guardar con *otro* nombre. | `curl http://sitio.com/file.rpm -o mi_paquete.rpm` |
 
-**El Problema de las Dependencias:**
-Si intentas instalar un paquete complejo (como `httpd`) con `rpm`, fallará si te faltan librerías previas. Es el infierno de las dependencias.
+---
 
-### B. La Solución: YUM (`Yellowdog Updater Modified`)
-YUM resuelve las dependencias automáticamente. Sabe qué librerías faltan, las baja y las instala por ti.
+## 2. Familia RedHat (CentOS / RHEL / Fedora)
 
-* **Configuración:** Los repositorios (de dónde bajar cosas) están en `/etc/yum.repos.d/`.
+### A. Gestión Manual con `rpm`
+Útil cuando descargas un paquete suelto y no usas repositorios.
 
-**Comandos Clave de YUM**:
+**Instalación y Borrado**:
+* `rpm -ivh paquete.rpm`: Instalar (Install, Verbose, Hash).
+* `rpm -Uvh paquete.rpm`: Actualizar (Upgrade).
+* `rpm -ev paquete`: Eliminar (Erase).
+
+**Consultas (Queries)**:
+Es vital saber qué tienes instalado.
+* `rpm -qa`: Listar **todos** los paquetes instalados.
+* `rpm -qi paquete`: Ver **información** detallada del paquete.
+* `rpm -qc paquete`: Ver archivos de **configuración** del paquete.
+* `rpm -qf /ruta/archivo`: ¿A qué paquete pertenece este archivo? (Muy útil).
+
+### B. Gestores Inteligentes: `yum` y `dnf`
+Resuelven las dependencias automáticamente.
+* **CentOS 7:** Usa `yum`.
+* **CentOS 8+:** Usa `dnf`.
+* *Nota: Los comandos son 99% idénticos.*
+
+**Comandos Clave (`yum` / `dnf`)**:
 
 ```bash
-# Actualizar todos los paquetes del sistema
-sudo yum update
+# Buscar paquetes
+dnf search httpd
 
-# Instalar un programa (y sus dependencias automáticamente)
-# -y responde "yes" a todo
-sudo yum install httpd -y
+# Instalar (flag -y para confirmar auto)
+sudo dnf install httpd -y
 
-# Eliminar un programa
-sudo yum remove httpd -y
+# Ver historial de operaciones (Muy útil para deshacer cambios)
+dnf history
 
-# Ayuda y lista de opciones
-yum --help
+# Limpiar caché (si hay errores de descarga)
+dnf clean all
+
+# Instalar un grupo de herramientas (ej: Development Tools)
+dnf groupinstall "Development Tools"
 ```
-## 2. Debian / Ubuntu (DPKG y APT)
+## 3. Familia Debian (Ubuntu / Kali)
 
-### A. Instalación Manual (`dpkg`)
-Si tienes un archivo `.deb` descargado (ej: con `wget`), lo instalas así:
+### A. Gestión Manual con `dpkg`
+* **Instalar:** `sudo dpkg -i paquete.deb`.
+* **Problemas:** Si la instalación manual falla por falta de dependencias, ejecuta `sudo apt install -f` para que el sistema las busque y repare.
 
-```bash
-# Descargar un paquete .deb
-wget [http://archive.ubuntu.com/ubuntu/pool/universe/t/tree/tree_1.7.0-3_amd64.deb](http://archive.ubuntu.com/ubuntu/pool/universe/t/tree/tree_1.7.0-3_amd64.deb)
+### B. Gestor Inteligente: `apt`
+La herramienta estándar en Ubuntu y Debian.
 
-# Instalar manualmente
-sudo dpkg -i tree_1.7.0-3_amd64.deb
-```
-### B. La Solución: APT (`Advanced Package Tool`)
-Es el equivalente a YUM pero para la familia Debian/Ubuntu. Es la forma estándar y recomendada de trabajar.
+* **Configuración:** La lista de repositorios se encuentra en `/etc/apt/sources.list`.
 
-* **Configuración:** La lista de repositorios (de dónde descargar el software) está en el archivo `/etc/apt/sources.list`. Este archivo es el mapa que usa el sistema para saber dónde buscar actualizaciones o programas nuevos.
+**Comandos Clave:**
 
 ```bash
-# Ver la lista de fuentes (repositorios)
-cat /etc/apt/sources.list
-
-# Ver la ayuda y opciones del comando
-apt --help
-```
-> **Nota:** El flujo de trabajo típico con APT es:
-> 1. `sudo apt update` (Actualiza la lista de paquetes disponibles).
-> 2. `sudo apt install nombre_paquete` (Instala el programa y sus dependencias).
-
-**Comandos Clave de APT**:
-
-```bash
-# 1. Actualizar la lista de repositorios (Hacer siempre antes de instalar)
+# 1. Actualizar lista de repositorios (Hacer SIEMPRE primero)
 sudo apt update
 
-# 2. Buscar un paquete (Ej: buscar 'apache2')
-# Muy útil si no sabes el nombre exacto del programa
+# 2. Buscar paquete (útil si no sabes el nombre exacto)
 apt search apache2
 
-# 3. Instalar un programa
-# En Ubuntu, el servidor web se llama 'apache2' (en CentOS era 'httpd')
+# 3. Instalar
 sudo apt install apache2 -y
+
+# 4. Reinstalar (si un paquete se corrompió)
+sudo apt reinstall apache2
+
+# 5. Borrar paquete
+sudo apt remove apache2
 ```
+## 📄 Cheatsheet Resumen
+
+Comparativa rápida entre los comandos de RedHat (CentOS) y Debian (Ubuntu).
+
+| Acción | RedHat / CentOS (`dnf`/`yum`) | Ubuntu / Debian (`apt`) |
+| :--- | :--- | :--- |
+| **Actualizar Listas** | `dnf check-update` | `apt update` |
+| **Actualizar Todo** | `dnf update` | `apt upgrade` |
+| **Instalar** | `dnf install pkg` | `apt install pkg` |
+| **Reinstalar** | `dnf reinstall pkg` | `apt reinstall pkg` |
+| **Borrar** | `dnf remove pkg` | `apt remove pkg` |
+| **Buscar** | `dnf search pkg` | `apt search pkg` |
+| **Ver Historia** | `dnf history` | (ver `/var/log/apt/history.log`) |
