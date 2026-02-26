@@ -15,26 +15,32 @@ Existen tres categorías principales de usuarios en el sistema:
 
 ---
 
-## 2. Archivos Críticos del Sistema
-Linux no usa una base de datos compleja para los usuarios; guarda todo en archivos de texto plano que puedes inspeccionar:
+## 2. Archivos Críticos del Sistema y su Sintaxis
+Linux guarda todo en archivos de texto plano. Cada línea representa una entrada separada por dos puntos (`:`).
 
-| Archivo | Descripción |
+| Archivo | Descripción y Estructura |
 | :--- | :--- |
-| **`cat /etc/passwd`** | Muestra todos los usuarios del sistema, sus UIDs, GIDs, directorios *home* y qué shell utilizan. (A pesar del nombre, *no* contiene las contraseñas). |
-| **`cat /etc/shadow`** | Contiene las contraseñas encriptadas y las fechas de expiración. Solo el usuario root puede leer este archivo. |
-| **`cat /etc/group`** | Muestra todos los grupos del sistema y qué usuarios pertenecen a ellos (como grupos secundarios). |
+| **`cat /etc/passwd`** | Muestra todos los usuarios. <br>Estructura: `nombre:x:UID:GID:comentario:directorio_home:shell`. <br>*(Ej: `root:x:0:0:root:/root:/bin/bash`)*. |
+| **`cat /etc/shadow`** | Contiene las contraseñas encriptadas y políticas de expiración (9 campos en total). Solo root puede leerlo. |
+| **`cat /etc/group`** | Almacena la información de los grupos. <br>Estructura: `nombre_grupo:password_grupo:GID:miembros`. |
 
 ---
 
 ## 3. Comandos de Gestión de Usuarios (CRUD)
 *Nota: Para ejecutar estos comandos necesitas ser root o usar `sudo`.*
 
+**¿Qué pasa cuando creas un usuario en Linux?**
+Por defecto, el sistema hace tres cosas automáticamente:
+1. Le asigna un UID y GID único.
+2. Crea su directorio personal en `/home/username`.
+3. Le crea un buzón de correo en `/var/spool/mail`.
+
 | Comando | Descripción |
 | :--- | :--- |
-| **`useradd <usuario>`** | Crea un nuevo usuario. Por defecto, le creará su carpeta `/home/<usuario>` y un grupo primario con su mismo nombre. |
-| **`passwd <usuario>`** | Asigna o cambia la contraseña del usuario. Si no tiene contraseña, no podrá iniciar sesión desde fuera. |
-| **`userdel <usuario>`** | Elimina al usuario del sistema, **pero deja intacta su carpeta `/home`** por si necesitas recuperar sus archivos. |
-| **`userdel -r <usuario>`** | Elimina al usuario y **borra por completo** su directorio `/home`. (¡Usar con precaución!). |
+| **`useradd <usuario>`** | Crea un nuevo usuario (Estándar en sistemas RedHat/CentOS). |
+| **`adduser <usuario>`** | Variante interactiva recomendada para crear usuarios en sistemas Ubuntu/Debian. |
+| **`passwd <usuario>`** | Asigna, cambia o resetea la contraseña del usuario. |
+| **`userdel -r <usuario>`** | Elimina al usuario y **borra por completo** su directorio `/home` (`-r` de recursive). |
 
 ---
 
