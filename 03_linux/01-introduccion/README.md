@@ -70,7 +70,7 @@ En Linux no existen `C:\` o `D:\`. Todo empieza desde la raíz `/`.
 | Directorio | Función |
 | :--- | :--- |
 | **`/` (Root)** | El inicio de todo. |
-| **`/root`** | La casa del usuario Administrador (Superusuario). |
+| **/root** | La casa del usuario Administrador (Superusuario). ¡No confundir con la raíz /! |
 | **`/home`** | Donde viven los usuarios normales (ej: `/home/vagrant`). |
 | **`/bin` & `/usr/bin`** | Comandos ejecutables para todos los usuarios (ej: `ls`, `cat`). |
 | **`/sbin`** | Comandos de sistema (System Binaries) reservados para el admin (ej: `reboot`, `iptables`). |
