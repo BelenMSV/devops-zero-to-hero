@@ -33,7 +33,7 @@ Si solo aprendes una cosa, que sea esto. Cómo entrar, editar y salir vivo.
 ## ⌨️ Chuleta de Comandos (Cheatsheet)
 Estos comandos funcionan en **Command Mode** (cuando NO estás escribiendo texto).
 
-### 🚶 Movimiento
+### 🚶 Movimiento y Búsqueda
 | Tecla | Acción |
 | :--- | :--- |
 | `gg` | Ir a la primera línea del archivo. |
@@ -41,6 +41,7 @@ Estos comandos funcionan en **Command Mode** (cuando NO estás escribiendo texto
 | `w` | Saltar a la siguiente palabra (Word). |
 | `b` | Saltar a la palabra anterior (Back). |
 | `:20` | Ir a la línea número 20 (Extended Mode). |
+| `/palabra` | Busca "palabra" hacia adelante en el texto. Pulsa `n` para ir al siguiente resultado. |
 
 ### 🛠️ Edición Rápida
 | Tecla | Acción |
@@ -64,8 +65,8 @@ Recuerda pulsar `Esc` antes de escribir los dos puntos `:`.
 | `:w!` | Forzar guardado (útil en archivos de solo lectura si eres root). |
 | `:wq!` | Forzar guardado y salir. |
 | `:X` | **Poner contraseña** (encriptar) el archivo. |
-| `:se nu` | Mostrar números de línea. |
-| `:se nonu` | Quitar números de línea. |
+| `:set number` o `:se nu` | Mostrar números de línea. |
+| `:set nonumber` o `:se nonu` | Quitar números de línea. |
 
 ---
 
