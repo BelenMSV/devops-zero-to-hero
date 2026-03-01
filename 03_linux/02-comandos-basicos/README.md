@@ -30,7 +30,7 @@ Para organizar nuestro trabajo, crearemos directorios (carpetas).
 El comando `cd` (Change Directory) es tus "piernas" en Linux.
 * **`cd nombre_carpeta`**: Entra en una carpeta.
 * **`cd ..`**: Retrocede un nivel (vuelve a la carpeta padre).
-* **`cd` (sin nada)**: Te lleva directo a tu casa (`/home/usuario`).
+* **`cd` (sin nada) `cd ~`**: Te lleva directo a tu directorio personal (home,ej:`/home/usuario`). El símbolo `~` (virgulilla) es el atajo universal para tu casa.
 
 ```bash
 # Entramos en la carpeta que acabamos de crear
