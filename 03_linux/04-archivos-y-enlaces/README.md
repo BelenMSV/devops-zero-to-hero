@@ -26,8 +26,13 @@ Un **Soft Link** (enlace simbólico) es exactamente igual que un "Acceso Directo
 ### ¿Para qué sirven en DevOps?
 Imagina que tienes una configuración en `/var/www/html/app/config/settings.yaml` y quieres editarla cómodamente desde tu carpeta personal. Creas un link y listo.
 
-### Comando `ln -s`
+### Comando `ln -s` (Soft Link)
 * **Sintaxis:** `ln -s <archivo_real> <nombre_del_link>`
+
+### Comando `ln` (Hard Link)
+* **Sintaxis:** `ln <archivo_real> <nombre_del_link>`
+
+Si ejecutas el comando sin la `-s` (`ln archivo.txt enlace`), crearás un **Hard Link** (enlace duro). A diferencia de los Soft Links, los enlaces duros son copias exactas a nivel de disco (apuntan al mismo inodo). Si borras el archivo original, el Hard Link sigue funcionando y conservando los datos. *(Nota: no se pueden hacer Hard Links de directorios).*
 
 ```bash
 # 1. Crear un archivo real para probar
@@ -42,6 +47,9 @@ ls -l
 # -rw-rw-r-- 1 vagrant vagrant 0 ... archivo_original.txt
 # lrwxrwxrwx 1 vagrant vagrant 20 ... mi_acceso_directo -> archivo_original.txt
 ```
+### Borrado de enlaces simbólicos
+Otro pequeño detalle vital para evitar desastres: cuando un novato quiere borrar el enlace simbólico `logdir` que habéis creado en el ejercicio, a veces usa el autocompletado del tabulador y ejecuta `rm logdir/` (con la barra al final). Dependiendo del sistema, esto puede dar error. Para borrar un enlace a un directorio, siempre es `rm logdir` (sin barra final).
+
 > **⚠️ Nota:** Si borras el archivo original, el enlace se rompe (se queda "huérfano") y dejará de funcionar.
 
 ### 🧪 Ejercicio Práctico
